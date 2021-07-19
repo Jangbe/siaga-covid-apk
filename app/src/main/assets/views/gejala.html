@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Webview Example</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .subtitle{
+            width: 100%;
+            padding: 5px 20px;
+            color: white;
+            font-family: Galano;
+            border-radius: 10px;
+        }.subtitle span{
+            margin: 0;
+            font-size: 20px;
+        }
+        .deskripsi{
+            color: #f06292;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        .deskripsi p{
+            margin: 0;
+        }
+        ul li {
+            list-style: inherit !important;
+        }
+        ul {
+            list-style: inherit !important;
+        }
+        body{
+            height: max-content;
+            background-image: url('../assets/img/gejala-bg.png');
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: 100%;
+            margin-bottom: 100px;
+        }
+    </style>
+</head>
+  <body>
+    <div class="container" style="height: 100%;">
+      <div class="title galano">
+        <h4>Kenali Gejala </h4>
+        <h4>Covid-19</h4>
+      </div>
+        <div class="subtitle pink darken-2">
+          <span>Tanpa Gejala</span>
+        </div>
+        <div class="deskripsi">
+          <p>Frekuensi napas 12-20 kali per menit</p>
+          <p>Saturasi >=95%</p>
+        </div>
+        <div class="subtitle pink lighten-2">
+          <span>Gejala Ringan</span>
+        </div>
+        <div class="deskripsi">
+            <ul>
+                <li><p>Sakit Kepala</p></li>
+                <li><p>Sakit Tenggorokan</p></li>
+                <li><p>Pilek</p></li>
+                <li><p>Demam</p></li>
+                <li><p>Batuk, umumnya batuk kering dan ringan</p></li>
+                <li><p>Fatigue / kelelahan ringan</p></li>
+                <li><p>Anoreksia</p></li>
+                <li><p>Kehilangan indra penciuman/ anosmia</p></li>
+                <li><p>Kehilangan indra pengecapan/ ageusia</p></li>
+                <li><p>Mialgia dan nyeri tulang</p></li>
+                <li><p>Mual, muntah, nyeri perut</p></li>
+                <li><p>Diare</p></li>
+                <li><p>Konjungtivis (radang atau iritasi mata)</p></li>
+                <li><p>Kemerahan pada kulit / perubahan warna <br>
+                    pada jari-jari kaki</p></li>
+                <li><p>Frekuensi napas 12-20 kali per menit</p></li>
+                <li><p>Saturasi ≥95% </p></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src = "../assets/script.js"></script>
+    <script src="../assets/popper.min.js"></script>
+    <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script>
+      $(window).on('resize', ()=>{
+        checkScrollable()
+      })
+      function checkScrollable(){
+        if ($("body").height() > $(window).height()) {
+          $('html').css({height: 'max-content'})
+        }else{
+          $('html').css({height: '100%'})
+        }
+      }
+      checkScrollable()
+    </script>
+  </body>
+</html>

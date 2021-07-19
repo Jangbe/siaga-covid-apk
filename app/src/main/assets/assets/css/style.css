@@ -1,0 +1,75 @@
+.app{
+    font-size:30px;
+}
+@font-face {
+    font-family: 'Galano';
+    src: url('../fonts/Rene\ Bieder\ -\ Galano\ Grotesque\ Alt\ DEMO\ Bold.otf');
+}
+html{
+    height: 100%;
+}
+body{
+    height: max-content;
+    background-image: url('../img/footer.png');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100%;
+    margin-bottom: 100px;
+}
+.galano{
+    border-left: 4px solid #9c105b;
+    padding-left: 5px;
+    font-family: Galano;
+    color: #9c105b;
+}
+.menu{
+    margin-top: 40px;
+}
+.menu-item{
+    border-radius: 50px;
+    height: auto;
+    font-size: 15px;
+    text-align: left;
+    padding: 15px 30px;
+    width: 95%;
+    line-height: normal;
+    margin: 10px auto;
+    font-weight: bold;
+    box-shadow: 5px 5px 3px #880e4f;
+    transform: scale(0);
+    transition: all 1.5s;
+    
+}
+.menu-item img{
+    position: absolute;
+    top: 0;
+    right: 20px;
+}
+.animate{
+    transform: scale(1);
+}
+.menu-item:focus{
+    box-shadow: 3px 3px 2px #880e4f;
+}
+.title{
+    margin: 40px 0;
+    position: relative;
+}
+.title h4{
+    margin: 0;
+    //text-indent: -400px;
+    font-weight: bold;
+}
+.title::before{
+    content: " ";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -64px;
+    background: white;
+    width: 60px;
+}
+.red{
+    border: 3px solid #ff2323;
+    box-shadow: 3px 3px 2px #ca1d1d;
+}

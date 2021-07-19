@@ -1,0 +1,32 @@
+{
+    "version": "1.0.0",
+    "name": "covid",
+    "app-name": "Siaga Covid",
+    "package-name": "smkypc",
+    "project-type": "webview",
+    "icon": "./assets/icon/icon.png",
+    "dist-path": "./dist",
+    "permission": [
+        "android.permission.INTERNET"
+    ],
+    "description": "",
+    "main": "main.js",
+    "scripts": {
+        "start:dev": "node .",
+        "build": "androidjs build"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "androidjs": "^2.0.2",
+        "jquery": "^3.6.0",
+        "materialize-css": "^1.0.0"
+    },
+    "project-name": "Covid Reminder",
+    "theme": {
+        "fullScreen": true,
+        "colorAccent": "#880e4f",
+        "colorPrimary": "#880e4f",
+        "colorPrimaryDark": "#880e4f"
+    }
+}

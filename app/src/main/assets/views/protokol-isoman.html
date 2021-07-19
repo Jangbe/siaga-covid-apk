@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Webview Example</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
+	<link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        body{
+            background-image: url('../assets/img/foter1.png');
+        }
+        .menu-item{
+            border-radius: 5px;
+            margin: 7px auto;
+            line-height: normal;
+            position: relative;
+            top: 0;
+            left: -565px;
+            /* margin-left: -600px; */
+            transform: scale(1);
+        }
+        .menu-item:nth-of-type(even){
+            left: 565px;
+        }
+        .menu-item img{
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    </style>
+</head>
+  <body>
+    <div class="container" style="height: 100%;">
+      <div class="title galano">
+        <h4>Protokol</h4>
+        <h4>Isoman</h4>
+      </div>
+      <div class="list center">
+        <button class="btn pink darken-2 menu-item">
+          Tetap dirumah
+          <img src="../assets/img/tetap-dirumah.png" alt="" width="90" height="90" style="margin-top: -35px;">
+        </button>
+        <button class="btn pink lighten-1 menu-item">
+          Gunakan masker
+          <img src="../assets/img/masker.png" alt="" width="60" height="50" style="margin-top: 0px;right: 20px;">
+        </button>
+        <button class="btn pink darken-2 menu-item">
+          Jaga jarak
+          <img src="../assets/img/jaga-jarak.png" alt="" width="130" height="55" style="margin-top: -5px;right: 10px">
+        </button>
+        <button class="btn pink lighten-1 menu-item">
+          Cuci Tangan
+          <img src="../assets/img/cuci-tangan.png" alt="" width="100" height="50" style="margin-top: 0px;">
+        </button>
+        <button class="btn pink darken-2 menu-item" style="height: 70px;">
+          Menerapkan <br> Etika batuk
+          <img src="../assets/img/etika-batuk.png" alt="" width="120" height="120" style="margin-top: -10px;">
+        </button>
+      </div>
+    </div>
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src = "../assets/script.js"></script>
+    <script src="../assets/popper.min.js"></script>
+    <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script>
+      $(window).on('resize', ()=>{
+        checkScrollable()
+      })
+      function checkScrollable(){
+        if ($("body").height() > $(window).height()) {
+          $('html').css({height: 'max-content'})
+        }else{
+          $('html').css({height: '100%'})
+        }
+      }
+      checkScrollable()
+      $('.menu-item').animate({
+          left: 0,
+          right: 0
+      },1000)
+      setTimeout(() => {
+          setInterval(() => {
+             $('.menu-item').animate({
+                 left: 10,
+                 top: -15
+             },500).animate({
+                 top: 15,
+             },500).animate({
+                 left: -10,
+                 top: -15
+             },500).animate({
+                top: 15
+             },500)
+          }, 2000);
+      }, 1000);
+    </script>
+  </body>
+</html>
