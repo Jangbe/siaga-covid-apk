@@ -55,22 +55,24 @@ public class WebAppInterface {
     public void addNotif(long waktu){
 //        Intent intent = new Intent(mContext.getApplicationContext(), Pengingat.class);
 //        PendingIntent pendingIntent = PendingIntent.getBroadcast(
-//                mContext.getApplicationContext(), 0, intent, 0);
+//                 mContext.getApplicationContext(), 0, intent, 0);
 //        AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
 //        alarmManager.set(AlarmManager.RTC_WAKEUP, waktu, pendingIntent);
         Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, 17);
-        cal.set(Calendar.MINUTE, 31);
+
+        cal.setTimeInMillis(System.currentTimeMillis());
+        cal.set(Calendar.HOUR_OF_DAY, 20);
+        cal.set(Calendar.MINUTE, 55);
         cal.set(Calendar.SECOND, 0);
 
-//        if (Calendar.getInstance().after(cal)) {
-//            cal.add(Calendar.DAY_OF_MONTH, 1);
-//        }
+        if (Calendar.getInstance().after(cal)) {
+            cal.add(Calendar.DAY_OF_MONTH, 1);
+        }
 
         Intent intent = new Intent(mContext.getApplicationContext(), Pengingat.class);
-        PendingIntent pintent = PendingIntent.getService(mContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pintent = PendingIntent.getBroadcast(mContext.getApplicationContext(), 0, intent, 0);
 
         AlarmManager alarm = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
-        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pintent);
+        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, waktu, 8000, pintent);
     }
 }
