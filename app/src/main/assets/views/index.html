@@ -13,8 +13,10 @@
       left: 23px !important;
       right: unset !important;
     }
+    .menu-item img{
+      z-index: -9999;
+    }
   </style>
-
 </head>
   <body>
     <div class="fixed-action-btn">
@@ -22,32 +24,30 @@
         <i class="large material-icons" id="off">volume_up</i>
         <i class="large material-icons">volume_off</i>
       </a>
-      <!-- <ul>  -->
     </div>
     <div class="container" style="height: 100%;">
-      <input type="date" id="">
       <div class="title galano">
         <h4>Siaga Covid</h4>
       </div>
-      <audio src="../assets/audio/welcome.mp3" id="welcome" autoplay></audio>
+      <audio src="../assets/audio/welcome.mp3" id="welcome"></audio>
       <div class="menu center">
-        <a href="gejala.html" class="btn waves-effect waves-light pink darken-2 menu-item">
+        <a href="gejala.html" class="btn pink darken-2 menu-item">
           Gejala Covid
           <img src="../assets/img/gejala.png" alt="" width="60" height="60" style="margin-top: -9px;">
         </a>
-        <a href="syarat-isoman.html" class="btn waves-effect waves-light pink lighten-1 menu-item">
+        <a href="syarat-isoman.html" class="btn pink lighten-1 menu-item">
           Syarat Isoman
           <img src="../assets/img/isoman.png" alt="" width="50" height="60" style="margin-top: -10px;">
         </a>
-        <a href="protokol-isoman.html" class="btn waves-effect waves-light pink darken-2 menu-item">
+        <a href="protokol-isoman.html" class="btn pink darken-2 menu-item">
           Protokol Isoman
           <img src="../assets/img/protocol.png" alt="" width="75" height="75" style="margin-top: -25px;">
         </a>
-        <button class="btn waves-effect waves-light pink lighten-1 menu-item">
+        <button class="btn pink lighten-1 menu-item">
           Kegiatan Harian
           <img src="../assets/img/kegiatan.png" alt="" width="86" height="60" style="margin-top: -10px;">
         </button>
-        <button class="btn waves-effect waves-light pink darken-2 menu-item" onclick="sendNotif()">
+        <button class="btn pink darken-2 menu-item" onclick="sendNotif()">
           Pengingat
           <img src="../assets/img/protocol.png" alt="" width="75" height="75" style="margin-top: -25px;">
         </button>
@@ -70,30 +70,38 @@
         }
       }
       checkScrollable()
-      let detikan = [3000, 3500, 4200, 2900, 3000]
-      let index = 0;
-      let interval;
-      let waktu = 0;
-      setTimeout(()=>{
-        $($('.menu-item')[0]).removeClass('pink').addClass('red');
-        interval = setInterval(()=>{
-          waktu+=100;
-          if(waktu==detikan[index]){
-            $($('.menu-item')[index+1]).removeClass('pink').addClass('red');
-            index++
-            waktu=0
-          }
-          $($('.menu-item')[index-1]).removeClass('red').addClass('pink');
-          if(index>=4){
-            clearInterval(interval)
-            setTimeout(()=>{
-              $($('.menu-item')[index]).removeClass('red').addClass('pink');
-              index=0
+      function firstOpen(){
+        let detikan = [3000, 3500, 4200, 2900, 3000]
+        let index = 0;
+        let interval;
+        let waktu = 0;
+        setTimeout(()=>{
+          $($('.menu-item')[0]).removeClass('pink').addClass('red');
+          interval = setInterval(()=>{
+            waktu+=100;
+            if(waktu==detikan[index]){
+              $($('.menu-item')[index+1]).removeClass('pink').addClass('red');
+              index++
               waktu=0
-            }, 2000)
-          }
-        },100)
-      },8000)
+            }
+            $($('.menu-item')[index-1]).removeClass('red').addClass('pink');
+            if(index>=4){
+              clearInterval(interval)
+              setTimeout(()=>{
+                $($('.menu-item')[index]).removeClass('red').addClass('pink');
+                index=0
+                waktu=0
+              }, 2000)
+            }
+          },100)
+        },8000)
+        $('#welcome')[0].play()
+      }
+      if(!sessionStorage.getItem('firstEnter')){
+        sessionStorage.setItem('firstEnter', true)
+        firstOpen()
+      }
+
       $('.menu-item').toggleClass('animate')
       $('.fixed-action-btn').floatingActionButton({
         hoverEnabled: false

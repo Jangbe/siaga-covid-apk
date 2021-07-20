@@ -70,7 +70,7 @@ public class WebAppInterface {
         }
 
         Intent intent = new Intent(mContext.getApplicationContext(), Pengingat.class);
-        PendingIntent pintent = PendingIntent.getBroadcast(mContext.getApplicationContext(), 0, intent, 0);
+        PendingIntent pintent = PendingIntent.getBroadcast(mContext.getApplicationContext(), 999, intent, 0);
 
         AlarmManager alarm = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
         alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, waktu, 8000, pintent);
