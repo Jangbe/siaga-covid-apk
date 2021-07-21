@@ -10,13 +10,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
+import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
-import androidx.work.PeriodicWorkRequest;
-import androidx.work.WorkRequest;
 
+import java.lang.reflect.Array;
 import java.util.Calendar;
 
 public class WebAppInterface {
@@ -31,8 +31,8 @@ public class WebAppInterface {
 
     /** Show a toast from the web page */
     @JavascriptInterface
-    public void showToast(String toast) {
-        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
+    public void saveData(String array) {
+        Log.i("console.log", array);
     }
 
     @JavascriptInterface

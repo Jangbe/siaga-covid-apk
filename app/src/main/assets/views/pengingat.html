@@ -49,27 +49,27 @@
         <form class="col s12" style="margin-top: 20px;">
           <div class="row">
             <div class="input-field col s12">
-              <input id="#" type="time" class="#">
-              <label for="#">Bangun tidur jam berapa</label>
+              <input id="bangun_tidur" type="time" class="#">
+              <label for="bangun_tidur">Bangun tidur jam berapa</label>
             </div>
             <div class="input-field col s12">
-                <input id="#" type="time" class="#">
-                <label for="#">Tidur jam berapa</label>
+                <input id="tidur" type="time" class="#">
+                <label for="tidur">Tidur jam berapa</label>
             </div>
             <div class="input-field col s12">
-                <input id="#" type="time" class="#">
-                <label for="#">Makan pagi jam berapa</label>
+                <input id="makan_pagi" type="time" class="#">
+                <label for="makan_pagi">Makan pagi jam berapa</label>
             </div>
             <div class="input-field col s12">
-                  <input id="#" type="time" class="#">
-                  <label for="#">Mulai aktivitas diluar rumah jam berapa</label>
+                  <input id="mulai_aktifitas" type="time" class="#">
+                  <label for="mulai_aktifitas">Mulai aktivitas diluar rumah jam berapa</label>
             </div>
             <div class="input-field col s12" style="margin-bottom: 5px;">
-                  <input id="#" type="time" class="#">
-                  <label for="#">Mulai aktivitas di dalam rumah jam berapa</label>
+                  <input id="mulai_aktifitas_rumah" type="time" class="#">
+                  <label for="mulai_aktifitas_rumah">Mulai aktivitas di dalam rumah jam berapa</label>
             </div>
             <div class="input-field col s12" style="margin-top: 5px;">
-                <button class="btn waves-effect waves-light submit z-depth-3" type="submit" id="">Simpan</button>
+                <button class="btn waves-effect waves-light submit z-depth-3" type="submit" onclick="saveData()">Simpan</button>
             </div>
           </div>
         </form>
@@ -81,17 +81,16 @@
     <script src="../assets/popper.min.js"></script>
     <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script>
-      $(window).on('resize', ()=>{
-        checkScrollable()
-      })
-      function checkScrollable(){
-        if ($("body").height() > $(window).height()) {
-          $('html').css({height: 'max-content'})
-        }else{
-          $('html').css({height: '100%'})
+        function saveData(){
+            let array = new Array()
+            array.push($("#bangun_tidur").val())
+            array.push($("#tidur").val())
+            array.push($("#makan_pagi").val())
+            array.push($("#mulai_aktifitas").val())
+            array.push($("#mulai_aktifitas_rumah").val())
+            console.log(array)
+            App.saveData(JSON.stringify(array))
         }
-      }
-      checkScrollable()
     </script>
   </body>
 </html>
