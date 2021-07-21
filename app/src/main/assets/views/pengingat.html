@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Webview Example</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .subtitle{
+            width: 100%;
+            padding: 5px 20px;
+            color: white;
+            font-family: Galano;
+            border-radius: 10px;
+        }.subtitle span{
+            margin: 0;
+            font-size: 20px;
+        }
+        .container label{
+            font-size: 15px;
+            font-style: italic;
+            font-weight: bold;
+            color: rgb(131, 99, 99);
+        }
+        .submit{
+            border-radius: 10px;
+            background-color: rgb(228, 118, 136);
+        }
+        body{
+            height: max-content;
+            background-image: url('../assets/img/gejala-bg.png');
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: 100%;
+            margin-bottom: 100px;
+        }
+    </style>
+</head>
+  <body>
+    <div class="container" style="height: 100%;">
+      <div class="title galano">
+        <h4>Menu </h4>
+        <h4>Pengingat</h4>
+      </div>
+        <div class="subtitle pink darken-2">
+          <span>Set Pengingat</span>
+        </div>
+        <form class="col s12" style="margin-top: 20px;">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="#" type="time" class="#">
+              <label for="#">Bangun tidur jam berapa</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="#" type="time" class="#">
+                <label for="#">Tidur jam berapa</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="#" type="time" class="#">
+                <label for="#">Makan pagi jam berapa</label>
+            </div>
+            <div class="input-field col s12">
+                  <input id="#" type="time" class="#">
+                  <label for="#">Mulai aktivitas diluar rumah jam berapa</label>
+            </div>
+            <div class="input-field col s12" style="margin-bottom: 5px;">
+                  <input id="#" type="time" class="#">
+                  <label for="#">Mulai aktivitas di dalam rumah jam berapa</label>
+            </div>
+            <div class="input-field col s12" style="margin-top: 5px;">
+                <button class="btn waves-effect waves-light submit z-depth-3" type="submit" id="">Simpan</button>
+            </div>
+          </div>
+        </form>
+        
+    </div>
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src = "../assets/script.js"></script>
+    <script src="../assets/popper.min.js"></script>
+    <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script>
+      $(window).on('resize', ()=>{
+        checkScrollable()
+      })
+      function checkScrollable(){
+        if ($("body").height() > $(window).height()) {
+          $('html').css({height: 'max-content'})
+        }else{
+          $('html').css({height: '100%'})
+        }
+      }
+      checkScrollable()
+    </script>
+  </body>
+</html>
