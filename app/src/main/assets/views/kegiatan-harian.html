@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Webview Example</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .subtitle{
+            width: 100%;
+            padding: 5px 20px;
+            color: white;
+            font-family: Galano;
+            border-radius: 10px;
+        }.subtitle span{
+            margin: 0;
+            font-size: 20px;
+        }
+        .deskripsi{
+            color: #f06292;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        .deskripsi p{
+            margin: 0;
+        }
+        .deskripsi ul li{
+              margin-top: 5px;
+        }
+        .deskripsi ul li b{
+          font-size: 15px;
+        }
+        ul li {
+            list-style: inherit !important;
+        }
+        ul {
+            list-style: inherit !important;
+        }
+        body{
+            height: max-content;
+            background-image: url('../assets/img/gejala-bg.png');
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: 100%;
+            margin-bottom: 100px;
+        }
+    </style>
+</head>
+  <body>
+    <div class="container" style="height: 100%;">
+      <div class="title galano">
+        <h4>Kegitan </h4>
+        <h4>Harian</h4>
+      </div>
+        <div class="subtitle pink darken-2">
+          <span>Tips Kegiatan</span>
+        </div>
+        <div class="deskripsi">
+            <ul>
+                <li><b>Buka jendela kamar</b> untuk cahaya matahari masuk dan sirkulasi udara</li>
+                <li><b>Berjemur matahari</b> 10-15 menit antar jam 10.00-13.00</li>
+                <li>Rutin <b>cuci tangan</b> dengan air mengalir dan sabun atau hand sanitizer</li>
+                <li><b>Olahraga</b> rutin 3-5 kali seminggu</li>
+                <li><b>Makan Bergizi seimbang 3 kali sehari</b> secara terpisah dengan keluarga</li>
+                <li><b>Pisahkan cucian kotor</b> dengan pakaian kotor keluarga lainnya </li>
+                <li><b>bersihkan kamar</b> setiap hari,<b>gunakan APD</b>(minimal masker)</li>
+                <li><b>Cuci alat makan sendiri</b> setelah selesai digunakan</li>
+                <li><b>Periksa suhu tubuh dan saturasi oksigen</b> setiap pagi dan malam</li>
+                <li><b>Tidur</b> dikamar peribadi yang terpisah dengan anggota keluarga lain</li>
+            </ul>
+        </div>
+        
+    </div>
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src = "../assets/script.js"></script>
+    <script src="../assets/popper.min.js"></script>
+    <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script>
+      $(window).on('resize', ()=>{
+        checkScrollable()
+      })
+      function checkScrollable(){
+        if ($("body").height() > $(window).height()) {
+          $('html').css({height: 'max-content'})
+        }else{
+          $('html').css({height: '100%'})
+        }
+      }
+      checkScrollable()
+    </script>
+  </body>
+</html>

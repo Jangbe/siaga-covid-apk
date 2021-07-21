@@ -54,6 +54,8 @@ body{
     transform: scale(1);
 }
 .menu-item:focus{
+    background: aliceblue !important;
+    background-color: aliceblue !important;
     box-shadow: 3px 3px 2px #880e4f;
 }
 .title{
