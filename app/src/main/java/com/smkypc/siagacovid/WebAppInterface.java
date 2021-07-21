@@ -4,14 +4,18 @@ import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkRequest;
 
 import java.util.Calendar;
 
@@ -74,5 +78,12 @@ public class WebAppInterface {
 
         AlarmManager alarm = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
         alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, waktu, 8000, pintent);
+
+        ComponentName receiver = new ComponentName(mContext.getApplicationContext(), Pengingat.class);
+        PackageManager pm = mContext.getPackageManager();
+
+        pm.setComponentEnabledSetting(receiver,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP);
     }
 }

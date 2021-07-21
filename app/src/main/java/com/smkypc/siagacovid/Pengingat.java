@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
@@ -20,14 +21,11 @@ public class Pengingat extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        // TODO: This method is called when the BroadcastReceiver is receiving
-        // an Intent broadcast.
-
         player = MediaPlayer.create(context, R.raw.alarm);
-        player.start();
 
         Bundle b = new Bundle();
 
+        player.start();
         //Menyisipkan tipe data String ke dalam obyek bundle
         b.putString("index", "cuci-tangan");
 

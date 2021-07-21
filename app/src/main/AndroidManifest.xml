@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.smkypc.siagacovid">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.smkypc.siagacovid"
+    android:installLocation="internalOnly">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK " />
 
     <application
         android:allowBackup="true"
@@ -11,10 +15,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SiagaCovid">
+
+        <!-- <receiver -->
+        <!-- android:name=".BootCompleteReceiver" -->
+        <!-- android:enabled="true" -->
+        <!-- android:exported="true" -->
+        <!-- android:directBootAware="true" -->
+        <!-- android:permission="android.permission.RECEIVE_BOOT_COMPLETED"> -->
+        <!-- <intent-filter> -->
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- <action android:name="android.intent.action.BOOT_COMPLETED"/> -->
+        <!-- <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" /> -->
+        <!-- <action android:name="android.intent.action.QUICKBOOT_POWERON"/> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
         <receiver
             android:name=".Pengingat"
+            android:directBootAware="true"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true"
+            tools:targetApi="n">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
         <activity android:name=".MainActivity">
             <intent-filter>

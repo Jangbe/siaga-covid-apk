@@ -3,7 +3,10 @@ package com.smkypc.siagacovid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -12,6 +15,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     WebView myWebView;
@@ -45,16 +50,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK) && myWebView.canGoBack()) {
-            //if Back key pressed and webview can navigate to previous page
             myWebView.goBack();
-            // go back to previous page
             return true;
         }
-//        else
-//        {
-//            finish();
-//            // finish the activity
-//        }
         return super.onKeyDown(keyCode, event);
     }
 }
