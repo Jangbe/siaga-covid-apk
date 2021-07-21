@@ -50,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
             // go back to previous page
             return true;
         }
-        else
-        {
-            finish();
-            // finish the activity
-        }
+//        else
+//        {
+//            finish();
+//            // finish the activity
+//        }
         return super.onKeyDown(keyCode, event);
     }
 }

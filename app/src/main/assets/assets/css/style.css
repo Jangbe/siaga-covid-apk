@@ -26,6 +26,10 @@ body{
     margin-top: 40px;
 }
 .menu-item{
+    line-height: normal;
+    position: relative;
+    top: 0;
+    /* left: -565px; */
     border-radius: 50px;
     height: auto;
     font-size: 15px;
@@ -42,6 +46,7 @@ body{
 }
 .menu-item img{
     position: absolute;
+    z-index: 9000;
     top: 0;
     right: 20px;
 }
@@ -57,7 +62,7 @@ body{
 }
 .title h4{
     margin: 0;
-    //text-indent: -400px;
+    text-indent: -400px;
     font-weight: bold;
 }
 .title::before{
