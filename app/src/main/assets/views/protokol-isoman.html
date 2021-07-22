@@ -17,7 +17,6 @@
             position: relative;
             top: 0;
             left: -565px;
-            /* margin-left: -600px; */
             transform: scale(1);
         }
         .menu-item:nth-of-type(even){
@@ -65,17 +64,6 @@
     <script src="../assets/popper.min.js"></script>
     <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script>
-      $(window).on('resize', ()=>{
-        checkScrollable()
-      })
-      function checkScrollable(){
-        if ($("body").height() > $(window).height()) {
-          $('html').css({height: 'max-content'})
-        }else{
-          $('html').css({height: '100%'})
-        }
-      }
-      checkScrollable()
       $('.menu-item').animate({
           left: 0,
           right: 0

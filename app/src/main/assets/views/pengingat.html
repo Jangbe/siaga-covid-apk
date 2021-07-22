@@ -7,16 +7,6 @@
     <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
-        .subtitle{
-            width: 100%;
-            padding: 5px 20px;
-            color: white;
-            font-family: Galano;
-            border-radius: 10px;
-        }.subtitle span{
-            margin: 0;
-            font-size: 20px;
-        }
         .container label{
             font-size: 15px;
             font-style: italic;
@@ -27,24 +17,13 @@
             border-radius: 10px;
             background-color: rgb(228, 118, 136);
         }
-        body{
-            height: max-content;
-            background-image: url('../assets/img/gejala-bg.png');
-            background-repeat: no-repeat;
-            background-position: bottom;
-            background-size: 100%;
-            margin-bottom: 100px;
-        }
     </style>
 </head>
   <body>
     <div class="container" style="height: 100%;">
-      <div class="title galano">
-        <h4>Menu </h4>
-        <h4>Pengingat</h4>
-      </div>
-        <div class="subtitle pink darken-2">
-          <span>Set Pengingat</span>
+        <div class="title galano">
+            <h4>Menu </h4>
+            <h4>Pengingat</h4>
         </div>
         <form class="col s12" style="margin-top: 20px;">
           <div class="row">
@@ -69,11 +48,10 @@
                   <label for="mulai_aktifitas_rumah">Mulai aktivitas di dalam rumah jam berapa</label>
             </div>
             <div class="input-field col s12" style="margin-top: 5px;">
-                <button class="btn waves-effect waves-light submit z-depth-3" type="submit" onclick="saveData()">Simpan</button>
+                <button class="btn waves-effect waves-light submit z-depth-3" type="button" onclick="saveData()">Simpan</button>
             </div>
           </div>
         </form>
-        
     </div>
 
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
@@ -81,6 +59,14 @@
     <script src="../assets/popper.min.js"></script>
     <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script>
+        let result = JSON.parse(App.getData());
+        if(result){
+            $("#bangun_tidur").val(result[0])
+            $("#tidur").val(result[1])
+            $("#makan_pagi").val(result[2])
+            $("#mulai_aktifitas").val(result[3])
+            $("#mulai_aktifitas_rumah").val(result[4])
+        }
         function saveData(){
             let array = new Array()
             array.push($("#bangun_tidur").val())
@@ -88,8 +74,8 @@
             array.push($("#makan_pagi").val())
             array.push($("#mulai_aktifitas").val())
             array.push($("#mulai_aktifitas_rumah").val())
-            console.log(array)
             App.saveData(JSON.stringify(array))
+            window.location.href = "index.html"
         }
     </script>
   </body>

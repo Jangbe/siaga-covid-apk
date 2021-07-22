@@ -3,23 +3,23 @@ package com.smkypc.siagacovid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
-import java.util.List;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
     WebView myWebView;
+    MediaPlayer mediaPlayer;
+    FloatingActionButton fab;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -40,11 +40,34 @@ public class MainActivity extends AppCompatActivity {
 
         Intent current = getIntent();
         if(current!=null && current.getStringExtra("index")!=null){
-            myWebView.loadUrl("file:///android_asset/views/protokol-isoman.html");
-            Toast.makeText(this, "Dari halaman lain", Toast.LENGTH_LONG).show();
+            String index = current.getStringExtra("index");
+            myWebView.loadUrl("file:///android_asset/views/kegiatan-harian.html?index="+index);
         }else{
             myWebView.loadUrl("file:///android_asset/views/index.html");
         }
+
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.backsound);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
+        mediaPlayer.setVolume(0, (float) .1);
+
+        fab = findViewById(R.id.fab);
+        final Boolean[] muted = {false};
+        fab.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
+            @Override
+            public void onClick(View view) {
+                muted[0] = !muted[0];
+                if(muted[0]){
+                    fab.setImageDrawable(getResources().getDrawable(R.drawable.volume_mute));
+                    mediaPlayer.setVolume(0,0);
+                }else{
+                    fab.setImageDrawable(getResources().getDrawable(R.drawable.volume_high));
+                    mediaPlayer.setVolume(0,(float) .1);
+                }
+            }
+        });
     }
 
     @Override

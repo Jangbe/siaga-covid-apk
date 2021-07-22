@@ -1,28 +1,26 @@
 package com.smkypc.siagacovid;
 
+import android.app.Activity;
 import android.app.AlarmManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.os.Build;
+import android.media.MediaPlayer;
 import android.util.Log;
+import android.view.View;
 import android.webkit.JavascriptInterface;
-import android.widget.Toast;
 
-import androidx.core.app.NotificationCompat;
 
-import java.lang.reflect.Array;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONArray;
 import java.util.Calendar;
 
 public class WebAppInterface {
     Context mContext;
-    String channelNotif = "channelKu";
-    String channelId = "default";
+    MediaPlayer clicked;
 
     /** Instantiate the interface and set the context */
     WebAppInterface(Context c) {
@@ -31,42 +29,34 @@ public class WebAppInterface {
 
     /** Show a toast from the web page */
     @JavascriptInterface
-    public void saveData(String array) {
-        Log.i("console.log", array);
-    }
-
-    @JavascriptInterface
-    public void showNotif(String title, String message){
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mContext, channelId)
-                .setSmallIcon(R.mipmap.ic_launcher_round)
-                .setContentTitle(title)
-                .setContentText(message);
-        NotificationManager mNotificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel notificationChannel = new NotificationChannel(channelNotif, "contoh channel", importance);
-            notificationChannel.enableLights(true);
-            notificationChannel.setLightColor(Color.RED);
-            mBuilder.setChannelId(channelNotif);
-            assert mNotificationManager != null;
-            mNotificationManager.createNotificationChannel(notificationChannel);
+    public void saveData(String params) {
+        View rootView = ((Activity)mContext).getWindow().getDecorView().findViewById(android.R.id.content);
+        Snackbar.make(rootView, "Alarm telah diperbarui.", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+        Preferences.setPrefs("reminder",params, mContext);
+        try{
+            String result = getData();
+            JSONArray array = new JSONArray(result);
+            for (int i=0;i<array.length();i++){
+                String[] info = array.getString(i).split(":");
+                addNotif(Integer.parseInt(info[0]),Integer.parseInt(info[1]), i);
+            }
+        }catch (Throwable t){
+            Log.e("Error::", t.getMessage());
         }
-        assert mNotificationManager != null;
-        mNotificationManager.notify((int) System.currentTimeMillis(),mBuilder.build());
     }
 
     @JavascriptInterface
-    public void addNotif(long waktu){
-//        Intent intent = new Intent(mContext.getApplicationContext(), Pengingat.class);
-//        PendingIntent pendingIntent = PendingIntent.getBroadcast(
-//                 mContext.getApplicationContext(), 0, intent, 0);
-//        AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
-//        alarmManager.set(AlarmManager.RTC_WAKEUP, waktu, pendingIntent);
+    public String getData(){
+        return Preferences.getPrefs("reminder", mContext);
+    }
+
+    @JavascriptInterface
+    public void addNotif(int jam, int menit, int requestCode){
         Calendar cal = Calendar.getInstance();
 
         cal.setTimeInMillis(System.currentTimeMillis());
-        cal.set(Calendar.HOUR_OF_DAY, 20);
-        cal.set(Calendar.MINUTE, 55);
+        cal.set(Calendar.HOUR_OF_DAY, jam);
+        cal.set(Calendar.MINUTE, menit);
         cal.set(Calendar.SECOND, 0);
 
         if (Calendar.getInstance().after(cal)) {
@@ -74,10 +64,11 @@ public class WebAppInterface {
         }
 
         Intent intent = new Intent(mContext.getApplicationContext(), Pengingat.class);
-        PendingIntent pintent = PendingIntent.getBroadcast(mContext.getApplicationContext(), 999, intent, 0);
+        intent.putExtra("requestCode", requestCode);
+        PendingIntent pintent = PendingIntent.getBroadcast(mContext.getApplicationContext(), requestCode, intent, 0);
 
         AlarmManager alarm = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
-        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, waktu, 8000, pintent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pintent);
 
         ComponentName receiver = new ComponentName(mContext.getApplicationContext(), Pengingat.class);
         PackageManager pm = mContext.getPackageManager();
@@ -85,5 +76,11 @@ public class WebAppInterface {
         pm.setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
+    }
+
+    @JavascriptInterface
+    public void click(){
+        clicked = MediaPlayer.create(mContext, R.raw.click);
+        clicked.start();
     }
 }
