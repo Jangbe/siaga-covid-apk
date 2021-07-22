@@ -73,18 +73,5 @@
     <script type="text/javascript" src = "../assets/script.js"></script>
     <script src="../assets/popper.min.js"></script>
     <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
-    <script>
-      $(window).on('resize', ()=>{
-        checkScrollable()
-      })
-      function checkScrollable(){
-        if ($("body").height() > $(window).height()) {
-          $('html').css({height: 'max-content'})
-        }else{
-          $('html').css({height: '100%'})
-        }
-      }
-      checkScrollable()
-    </script>
   </body>
 </html>

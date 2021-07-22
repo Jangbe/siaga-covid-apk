@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SiagaCovid</string>
     <string name="service_desc">service_desc</string>
+    <string name="submit">Submit</string>
 </resources>

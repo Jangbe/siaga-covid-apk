@@ -17,3 +17,19 @@ setInterval(()=>{
 		marginLeft: 10
 	},1000)
 }, 2000)
+
+$(window).on('resize', ()=>{
+    checkScrollable()
+})
+function checkScrollable(){
+    if ($("body").height() > $(window).height()) {
+      $('html').css({height: 'max-content'})
+    }else{
+      $('html').css({height: '100%'})
+    }
+}
+checkScrollable()
+
+$('a, button').click((e)=>{
+	App.click()
+})
