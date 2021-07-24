@@ -10,10 +10,8 @@ $('.title').children().animate({
 
 setInterval(()=>{
 	$('.menu').animate({
-		// marginRight: -10,
 		marginLeft: -10,
 	},1000).animate({
-		// marginRight: 10,
 		marginLeft: 10
 	},1000)
 }, 2000)

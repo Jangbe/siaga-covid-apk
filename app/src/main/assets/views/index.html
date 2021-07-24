@@ -17,6 +17,10 @@
       z-index: -9999;
     }
   </style>
+  <script src="../assets/js/p5.min.js"></script>
+  <script src="../assets/js/p5.dom.min.js"></script>
+  <script src="../assets/js/ml5.min.js" type="text/javascript"></script>
+  <script src="../assets/js/sketch.js"></script>
 </head>
   <body>
     <div class="container" style="height: 100%;">
@@ -46,9 +50,37 @@
           <img src="../assets/img/protocol.png" alt="" width="75" height="75" style="margin-top: -25px;">
         </a>
       </div>
+      <button id="take">Take Foto</button>
     </div>
 
+    <audio src="../assets/audio/pakai-masker.mp3" id="pakai-masker"></audio>
+    <video id="webcam" autoplay playsinline ></video>
+    <canvas id="canvas" class="d-none" style="display: none;"></canvas>
+    <audio id="snapSound" src="../assets/audio/click.mp3" preload = "auto"></audio>
+    <script src="../assets/webcam-easy.min.js"></script>
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        const webcamElement = document.getElementById('webcam');
+        const canvasElement = document.getElementById('canvas');
+        const snapSoundElement = document.getElementById('snapSound');
+        const webcam = new Webcam(webcamElement, 'user', canvasElement, snapSoundElement);
+        
+        webcam.start();
+
+        let take = document.querySelector("#take");
+        take.addEventListener("click",()=>{
+            App.camera();
+            // let picture = webcam.snap();
+            // imgChange(picture)
+        })
+
+        function takeCamera(){
+          console.log("Picture");
+          let picture = webcam.snap();
+          imgChange(picture);
+        }
+
+    </script>
     <script type="text/javascript" src = "../assets/script.js"></script>
     <script src="../assets/popper.min.js"></script>
     <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>

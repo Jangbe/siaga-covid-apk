@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Webview Example</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/js/p5.min.js"></script>
+    <script src="../assets/js/p5.dom.min.js"></script>
+    <script src="../assets/js/ml5.min.js"></script>
+    <script src="../assets/js/sketch.js"></script>
+</head>
+  <body>
+
+    <button id="take">Foto</button>
+    <audio src="../assets/audio/pakai-masker.mp3" id="pakai-masker"></audio>
+    <video id="webcam" autoplay playsinline ></video>
+    <canvas id="canvas" class="d-none"></canvas>
+    <audio id="snapSound" src="../assets/audio/click.mp3" preload = "auto"></audio>
+    <script src="../assets/webcam-easy.min.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        const webcamElement = document.getElementById('webcam');
+        const canvasElement = document.getElementById('canvas');
+        const snapSoundElement = document.getElementById('snapSound');
+        const webcam = new Webcam(webcamElement, 'user', canvasElement, snapSoundElement);
+        
+        webcam.start();
+
+        let picture
+        document.querySelector('#take').addEventListener('click',()=>{
+            picture = webcam.snap();
+            console.log("Picture");
+            imgChange(picture);
+        })
+        setTimeout(()=>{
+            let click = new Event("click")
+            document.querySelector('#take').dispatchEvent(click)
+        },3000)
+
+    </script>
+  </body>
+</html>

@@ -1,14 +1,17 @@
 package com.smkypc.siagacovid;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
+import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.format.Formatter;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.PermissionRequest;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -16,20 +19,44 @@ import android.webkit.WebViewClient;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
     WebView myWebView;
     MediaPlayer mediaPlayer;
     FloatingActionButton fab;
+    private final String TAG = "TAG";
+    private static MyHTTPD server;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        try {
+            server = new MyHTTPD(this);
+            server.start();
+
+            initIPAddress();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         myWebView = (WebView) findViewById(R.id.webview);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        myWebView.setWebChromeClient(new WebChromeClient());
+        myWebView.setWebChromeClient(new WebChromeClient() {
+            // Grant permissions for cam
+            @Override
+            public void onPermissionRequest(final PermissionRequest request) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    request.grant(request.getResources());
+                }
+                Log.d(TAG, "onPermissionRequest");
+            }
+        });
+
         myWebView.setWebViewClient(new WebViewClient());
 
         webSettings.setMediaPlaybackRequiresUserGesture(false);
@@ -45,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         }else{
             myWebView.loadUrl("file:///android_asset/views/index.html");
         }
-
 
         mediaPlayer = MediaPlayer.create(this, R.raw.backsound);
         mediaPlayer.setLooping(true);
@@ -77,5 +103,12 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    private void initIPAddress() {
+        WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress()) + ":" + MyHTTPD.PORT;
+        Preferences.setPrefs("ip", ip, this);
+        Log.i("TAG", "onCreate: " + ip);
     }
 }
