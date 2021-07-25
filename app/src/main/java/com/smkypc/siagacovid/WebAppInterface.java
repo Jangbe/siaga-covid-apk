@@ -1,5 +1,6 @@
 package com.smkypc.siagacovid;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -7,6 +8,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.hardware.Camera;
 import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +18,8 @@ import android.webkit.JavascriptInterface;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
+
+import java.sql.Blob;
 import java.util.Calendar;
 
 public class WebAppInterface {
@@ -82,5 +86,26 @@ public class WebAppInterface {
     public void click(){
         clicked = MediaPlayer.create(mContext, R.raw.click);
         clicked.start();
+    }
+
+    @SuppressLint("ShortAlarm")
+    @JavascriptInterface
+    public void camera(){
+        Calendar cal = Calendar.getInstance();
+
+        cal.setTimeInMillis(System.currentTimeMillis());
+        cal.set(Calendar.SECOND, 0);
+
+        Intent intent = new Intent(mContext.getApplicationContext(), TakeCamera.class);
+        intent.setAction("takeCamera");
+        PendingIntent pintent = PendingIntent.getBroadcast(mContext.getApplicationContext(), 1000, intent, 0);
+
+        AlarmManager alarm = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis()+2000, 10000, pintent);
+    }
+
+    @JavascriptInterface
+    public void takeData(Blob data){
+        Log.i("Blob", String.valueOf(data));
     }
 }
