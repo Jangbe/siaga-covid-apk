@@ -29,5 +29,7 @@ function checkScrollable(){
 checkScrollable()
 
 $('a, button').click((e)=>{
-	App.click()
+	if(typeof App != undefined){
+		App.click()
+	}
 })

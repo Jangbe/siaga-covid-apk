@@ -91,30 +91,17 @@ public class WebAppInterface {
     @SuppressLint("ShortAlarm")
     @JavascriptInterface
     public void camera(){
-//        int camID = Camera.getNumberOfCameras();
-//        Camera cam = Camera.open(camID);
-//        Camera.Parameters p = cam.getParameters();
-//        p.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-//        cam.setParameters(p);
-//        cam.stopPreview();
+        Calendar cal = Calendar.getInstance();
 
-        Intent i = new Intent(mContext, MainActivity2.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mContext.startActivity(i);
+        cal.setTimeInMillis(System.currentTimeMillis());
+        cal.set(Calendar.SECOND, 0);
 
-//        Calendar cal = Calendar.getInstance();
-//
-//        cal.setTimeInMillis(System.currentTimeMillis());
-////        cal.set(Calendar.HOUR_OF_DAY, jam);
-////        cal.set(Calendar.MINUTE, menit);
-//        cal.set(Calendar.SECOND, 0);
-//
-//        Intent intent = new Intent(mContext.getApplicationContext(), TakeCamera.class);
-//        intent.setAction("takeCamera");
-//        PendingIntent pintent = PendingIntent.getBroadcast(mContext.getApplicationContext(), 1000, intent, 0);
-//
-//        AlarmManager alarm = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
-//        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis()+2000, 10000, pintent);
+        Intent intent = new Intent(mContext.getApplicationContext(), TakeCamera.class);
+        intent.setAction("takeCamera");
+        PendingIntent pintent = PendingIntent.getBroadcast(mContext.getApplicationContext(), 1000, intent, 0);
+
+        AlarmManager alarm = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis()+2000, 10000, pintent);
     }
 
     @JavascriptInterface

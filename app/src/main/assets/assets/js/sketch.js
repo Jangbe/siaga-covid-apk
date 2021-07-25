@@ -13,7 +13,8 @@ This example uses p5 preload function to create the classifier
 let classifier;
 // Model URL
 // let imageModelURL = 'https://teachablemachine.withgoogle.com/models/BlP1OZ89F/model.json';
-let imageModelURL = 'model/model.json';
+let ip = "http://0.0.0.0:8765";
+let imageModelURL = ip+'/views/model/model.json';
 
 let img;
 
@@ -23,6 +24,13 @@ var pakaiMasker
 document.addEventListener('DOMContentLoaded',()=>{
   pakaiMasker = document.querySelector("#pakai-masker")
 })
+
+function initUrl(url){
+  ip = url
+  console.log(imageModelURL);
+  classifier = ml5.imageClassifier(imageModelURL);
+}
+
 function preload() {
   classifier = ml5.imageClassifier(imageModelURL);
 }

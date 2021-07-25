@@ -40,7 +40,7 @@ public class MyHTTPD extends NanoHTTPD {
             is_ascii = false;
         } else if (filename.contains(".css")) {
             mimetype = "text/css";
-            is_ascii = false;
+            is_ascii = true;
         } else if (filename.contains(".gif")) {
             mimetype = "text/gif";
             is_ascii = false;

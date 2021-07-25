@@ -26,22 +26,12 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     FloatingActionButton fab;
     private final String TAG = "TAG";
-    private static MyHTTPD server;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        try {
-            server = new MyHTTPD(this);
-            server.start();
-
-            initIPAddress();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         myWebView = (WebView) findViewById(R.id.webview);
         WebSettings webSettings = myWebView.getSettings();
@@ -57,12 +47,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        myWebView.setWebViewClient(new WebViewClient());
+        myWebView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                String ip = Preferences.getPrefs("ip", MainActivity.this);
+                Log.i("IP", ip);
+                myWebView.loadUrl("javascript:initUrl("+ip+")");
+            }
+        });
 
         webSettings.setMediaPlaybackRequiresUserGesture(false);
         webSettings.setSupportZoom(false);
         webSettings.setDomStorageEnabled(true);
         webSettings.setDefaultTextEncodingName("utf-8");
+        webSettings.setAllowFileAccessFromFileURLs(true);
+        webSettings.setAllowFileAccess(true);
+        webSettings.setAllowUniversalAccessFromFileURLs(true);
         myWebView.addJavascriptInterface(new WebAppInterface(this), "App");
 
         Intent current = getIntent();
@@ -73,11 +78,27 @@ public class MainActivity extends AppCompatActivity {
             myWebView.loadUrl("file:///android_asset/views/index.html");
         }
 
+        initBacksound();
+        initFab();
+    }
+
+    private void initBacksound() {
         mediaPlayer = MediaPlayer.create(this, R.raw.backsound);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
         mediaPlayer.setVolume(0, (float) .1);
+    }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK) && myWebView.canGoBack()) {
+            myWebView.goBack();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void initFab(){
         fab = findViewById(R.id.fab);
         final Boolean[] muted = {false};
         fab.setOnClickListener(new View.OnClickListener() {
@@ -94,21 +115,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK) && myWebView.canGoBack()) {
-            myWebView.goBack();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
-    private void initIPAddress() {
-        WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-        String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress()) + ":" + MyHTTPD.PORT;
-        Preferences.setPrefs("ip", ip, this);
-        Log.i("TAG", "onCreate: " + ip);
     }
 }
