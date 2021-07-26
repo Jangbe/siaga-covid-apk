@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Webview Example</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
+	<link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        body{
+            background-image: url('../assets/img/foter1.png');
+        }
+        .menu-item{
+            border-radius: 5px;
+            margin: 7px auto;
+            line-height: normal;
+            position: relative;
+            top: 0;
+            left: -565px;
+            /* margin-left: -600px; */
+            transform: scale(1);
+        }
+        .menu-item:nth-of-type(even){
+            left: 565px;
+        }
+        .menu-item img{
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        .content{
+          color: #f06292;
+        }
+        .content ul li{
+          font-weight: bold;
+          color: #9c105b;
+          margin: -3px;
+          margin-top: 10px;
+        }
+        .content p{
+          margin-bottom: 5px;
+        }
+    </style>
+</head>
+  <body>
+    <div class="container" style="height: 100%;">
+      <div class="title galano">
+        <h4>Jaga </h4>
+        <h4>Jarak</h4>
+      </div>
+      <div class="content">
+        <ul>
+          <li>-Jaga Jarak</li>
+          <p>
+            Selama isoman kamu harus menggunakan kamar terpisah dengananggota keluarga lainnya,jika ada diruangan yang sama dengan anggota keluarg lainnya tetap jaga jarak minimal 1 meter dan tetap menggunakan masker.
+          </p>
+          <a href="https://mediaindonesia.com/humaniora/415338/tetap-aman-ini-yang-harus-dilakukan-saat-isolasi-mandiri-di-rumah" class="link">(https://mediaindonesia.com/humaniora/415338/tetap-aman-ini-yang-harus-dilakukan-saat-isolasi-mandiri-di-rumah)</a>
+
+          <li>-Tetap Di Rumah</li>
+          <p>
+            Hubungi dokter jika Anda memiliki gejala apa pun. Tetap di rumah sampai Anda pulih. Hindari duduk, tidur, atau makan dengan orang yang Anda cintai, meski Anda tinggal di rumah yang sama.Pakai masker dan cuci tangan sesering mungkin. Jika Anda membutuhkan perawatan medis yang mendesak, kenakan masker dan beri tahu mereka bahwa Anda mungkin memiliki COVID-19.Jangan biarkan pengunjung dari luar masuk Meski Anda mungkin menginginkan untuk mengunjungi teman atau keluarga Anda, jangan bepergian selama waktu ini karena anda dapat menularkan ke orang lain.Tetaplah di rumah dan jaga kesehatan karena virus corona dapat menular dengan mudah kepada mereka yang memiliki imun rendah.
+          </p>
+          <a href="https://www.bola.com/ragam/read/4601464/8-cara-mengurangi-penyebaran-virus-corona-pakai-masker-dan-tetap-di-rumah-saja">(https://www.bola.com/ragam/read/4601464/8-cara-mengurangi-penyebaran-virus-corona-pakai-masker-dan-tetap-di-rumah-saja)</a>,
+          <a href="https://www.bola.com/ragam/read/4601464/8-cara-mengurangi-penyebaran-virus-corona-pakai-masker-dan-tetap-di-rumah-saja">(https://www.bola.com/ragam/read/4601464/8-cara-mengurangi-penyebaran-virus-corona-pakai-masker-dan-tetap-di-rumah-saja)</a>
+        </ul>
+      </div>
+    </div>
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src = "../assets/script.js"></script>
+    <script src="../assets/popper.min.js"></script>
+    <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script>
+      $(window).on('resize', ()=>{
+        checkScrollable()
+      })
+      function checkScrollable(){
+        if ($("body").height() > $(window).height()) {
+          $('html').css({height: 'max-content'})
+        }else{
+          $('html').css({height: '100%'})
+        }
+      }
+      checkScrollable()
+      $('.menu-item').animate({
+          left: 0,
+          right: 0
+      },1000)
+      setTimeout(() => {
+          setInterval(() => {
+             $('.menu-item').animate({
+                 left: 10,
+                 top: -15
+             },500).animate({
+                 top: 15,
+             },500).animate({
+                 left: -10,
+                 top: -15
+             },500).animate({
+                top: 15
+             },500)
+          }, 2000);
+      }, 1000);
+    </script>
+  </body>
+</html>
