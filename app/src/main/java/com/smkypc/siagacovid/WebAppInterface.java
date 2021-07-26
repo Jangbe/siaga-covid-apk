@@ -91,6 +91,10 @@ public class WebAppInterface {
     @SuppressLint("ShortAlarm")
     @JavascriptInterface
     public void camera(){
+//        Intent intent = new Intent(mContext, MainActivity2.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        mContext.startActivity(intent);
+
         Calendar cal = Calendar.getInstance();
 
         cal.setTimeInMillis(System.currentTimeMillis());
