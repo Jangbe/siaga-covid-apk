@@ -109,6 +109,12 @@ public class WebAppInterface {
     }
 
     @JavascriptInterface
+    public void game(){
+        Intent intent = new Intent(mContext.getApplicationContext(), GameActivity.class);
+        mContext.startActivity(intent);
+    }
+
+    @JavascriptInterface
     public void takeData(Blob data){
         Log.i("Blob", String.valueOf(data));
     }

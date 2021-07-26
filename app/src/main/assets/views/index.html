@@ -45,21 +45,14 @@
           Pengingat
           <img src="../assets/img/protocol.png" alt="" width="75" height="75" style="margin-top: -25px;">
         </a>
+        <button class="btn pink lighten-1 menu-item" onclick="App.game()">
+          Game
+          <img src="../assets/img/protocol.png" alt="" width="75" height="75" style="margin-top: -25px;">
+        </button>
       </div>
-      <button id="take" style="margin-top: 20px;">Take Foto</button>
     </div>
 
-    <audio src="../assets/audio/pakai-masker.mp3" id="pakai-masker"></audio>
-    <canvas id="canvas" class="d-none" style="display: none;"></canvas>
-    <audio id="snapSound" src="../assets/audio/click.mp3" preload = "auto"></audio>
-    <script src="../assets/webcam-easy.min.js"></script>
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        let take = document.querySelector("#take");
-        take.addEventListener("click",()=>{
-            App.camera();
-        })
-    </script>
     <script type="text/javascript" src = "../assets/script.js"></script>
     <script src="../assets/popper.min.js"></script>
     <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
