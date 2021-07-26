@@ -1,14 +1,17 @@
 package com.smkypc.siagacovid;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
+import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.format.Formatter;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.PermissionRequest;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -16,26 +19,55 @@ import android.webkit.WebViewClient;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
     WebView myWebView;
     MediaPlayer mediaPlayer;
     FloatingActionButton fab;
+    private final String TAG = "TAG";
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         myWebView = (WebView) findViewById(R.id.webview);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        myWebView.setWebChromeClient(new WebChromeClient());
-        myWebView.setWebViewClient(new WebViewClient());
+        myWebView.setWebChromeClient(new WebChromeClient() {
+            // Grant permissions for cam
+            @Override
+            public void onPermissionRequest(final PermissionRequest request) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    request.grant(request.getResources());
+                }
+                Log.d(TAG, "onPermissionRequest");
+            }
+        });
+
+        myWebView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                String ip = Preferences.getPrefs("ip", MainActivity.this);
+                Log.i("IP", ip);
+                myWebView.loadUrl("javascript:initUrl("+ip+")");
+            }
+        });
 
         webSettings.setMediaPlaybackRequiresUserGesture(false);
         webSettings.setSupportZoom(false);
         webSettings.setDomStorageEnabled(true);
         webSettings.setDefaultTextEncodingName("utf-8");
+        webSettings.setAllowFileAccessFromFileURLs(true);
+        webSettings.setAllowFileAccess(true);
+        webSettings.setAllowUniversalAccessFromFileURLs(true);
         myWebView.addJavascriptInterface(new WebAppInterface(this), "App");
 
         Intent current = getIntent();
@@ -46,12 +78,27 @@ public class MainActivity extends AppCompatActivity {
             myWebView.loadUrl("file:///android_asset/views/index.html");
         }
 
+        initBacksound();
+        initFab();
+    }
 
+    private void initBacksound() {
         mediaPlayer = MediaPlayer.create(this, R.raw.backsound);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
         mediaPlayer.setVolume(0, (float) .1);
+    }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK) && myWebView.canGoBack()) {
+            myWebView.goBack();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void initFab(){
         fab = findViewById(R.id.fab);
         final Boolean[] muted = {false};
         fab.setOnClickListener(new View.OnClickListener() {
@@ -68,14 +115,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK) && myWebView.canGoBack()) {
-            myWebView.goBack();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
     }
 }
