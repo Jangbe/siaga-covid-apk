@@ -72,7 +72,7 @@ public class WebAppInterface {
         PendingIntent pintent = PendingIntent.getBroadcast(mContext.getApplicationContext(), requestCode, intent, 0);
 
         AlarmManager alarm = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pintent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pintent);
 
         ComponentName receiver = new ComponentName(mContext.getApplicationContext(), Pengingat.class);
         PackageManager pm = mContext.getPackageManager();
