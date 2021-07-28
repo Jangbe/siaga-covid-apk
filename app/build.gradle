@@ -39,4 +39,5 @@ dependencies {
     implementation 'org.nanohttpd:nanohttpd:2.2.0'
     implementation 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    implementation 'com.github.f0ris.sweetalert:library:1.6.2'
 }

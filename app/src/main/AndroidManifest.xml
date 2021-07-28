@@ -38,7 +38,6 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity android:name=".GameActivity" android:screenOrientation="landscape"/>
-        <activity android:name=".MainActivity2" />
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
@@ -64,7 +63,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" android:screenOrientation="portrait" />
 
         <receiver
             android:name=".Pengingat"

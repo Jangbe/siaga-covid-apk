@@ -54,8 +54,8 @@ body{
     transform: scale(1);
 }
 .menu-item:focus{
-    background: aliceblue !important;
-    background-color: aliceblue !important;
+    background: #9c105b !important;
+    background-color: #9c105b !important;
     box-shadow: 3px 3px 2px #880e4f;
 }
 .title{
@@ -76,7 +76,9 @@ body{
     background: white;
     width: 60px;
 }
-.red{
-    border: 3px solid #ff2323;
-    box-shadow: 3px 3px 2px #ca1d1d;
+.hoverable{
+    background-color: #fffdd0 !important;
+    background: #fffdd0 !important;
+    color: #800505;
+    border: 1px solid #800505;
 }

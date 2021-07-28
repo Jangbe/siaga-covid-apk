@@ -43,11 +43,11 @@
         </a>
         <a href="pengingat.html" class="btn pink darken-2 menu-item">
           Pengingat
-          <img src="../assets/img/protocol.png" alt="" width="75" height="75" style="margin-top: -25px;">
+          <img src="../assets/img/clock.png" alt="" width="75" height="75" style="margin-top: -15px;">
         </a>
         <button class="btn pink lighten-1 menu-item" onclick="App.game()">
           Game
-          <img src="../assets/img/protocol.png" alt="" width="75" height="75" style="margin-top: -25px;">
+          <img src="../assets/img/control.png" alt="" width="80" height="70" style="margin-top: -15px;">
         </button>
       </div>
     </div>
@@ -58,24 +58,24 @@
     <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script>
       function firstOpen(){
-        let detikan = [3000, 3500, 4200, 2900, 3000]
+        let detikan = [3000, 3500, 4200, 2900, 3000,2500]
         let index = 0;
         let interval;
         let waktu = 0;
         setTimeout(()=>{
-          $($('.menu-item')[0]).removeClass('pink').addClass('red');
+          $($('.menu-item')[0]).removeClass('pink').addClass('hoverable');
           interval = setInterval(()=>{
             waktu+=100;
             if(waktu==detikan[index]){
-              $($('.menu-item')[index+1]).removeClass('pink').addClass('red');
+              $($('.menu-item')[index+1]).removeClass('pink').addClass('hoverable');
               index++
               waktu=0
             }
-            $($('.menu-item')[index-1]).removeClass('red').addClass('pink');
-            if(index>=4){
+            $($('.menu-item')[index-1]).removeClass('hoverable').addClass('pink');
+            if(index>=5){
               clearInterval(interval)
               setTimeout(()=>{
-                $($('.menu-item')[index]).removeClass('red').addClass('pink');
+                $($('.menu-item')[index]).removeClass('hoverable').addClass('pink');
                 index=0
                 waktu=0
               }, 2000)
@@ -84,6 +84,7 @@
         },8000)
         $('#welcome')[0].play()
       }
+      firstOpen()
       if(!sessionStorage.getItem('firstEnter')){
         sessionStorage.setItem('firstEnter', true)
         firstOpen()

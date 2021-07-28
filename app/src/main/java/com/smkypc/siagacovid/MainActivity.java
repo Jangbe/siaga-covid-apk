@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class MainActivity extends AppCompatActivity {
     WebView myWebView;
     MediaPlayer mediaPlayer;
@@ -92,6 +94,24 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        new SweetAlertDialog(MainActivity.this, SweetAlertDialog.NORMAL_TYPE)
+            .setTitleText("Apakah kamu yakin?")
+            .setContentText("Kamu akan keluar aplikasi?")
+            .setConfirmText("Ya")
+            .setConfirmButtonBackgroundColor(R.color.red_btn_bg_color)
+            .setCancelButtonBackgroundColor(R.color.main_blue_color)
+            .setConfirmClickListener(sDialog -> {
+                sDialog.dismissWithAnimation();
+                finish();
+            })
+            .setCancelButton("Batal", sDialog -> {
+                sDialog.dismissWithAnimation();
+            })
+            .show();
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

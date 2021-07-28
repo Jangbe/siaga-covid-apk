@@ -18,6 +18,8 @@ import android.webkit.WebViewClient;
 
 import java.io.IOException;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class GameActivity extends AppCompatActivity {
     WebView myWebView;
     private static MyHTTPD server;
@@ -45,7 +47,8 @@ public class GameActivity extends AppCompatActivity {
         myWebView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;
+                view.loadUrl(url);
+                return true;
             }
         });
 
@@ -56,21 +59,33 @@ public class GameActivity extends AppCompatActivity {
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setAllowFileAccess(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
-//        myWebView.addJavascriptInterface(new WebAppInterface(this), "App");
 
-//        String ip = "";
-//        try {
-//            server = new MyHTTPD(this);
-//            server.start();
-//
-//            WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-//            ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress()) + ":" + MyHTTPD.PORT;
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-        myWebView.loadUrl("http://0.0.0.0:8765/game/index.html");
+        myWebView.loadUrl("file:///android_asset/game/index.html");
         hideSystemUI();
+    }
+
+    @Override
+    public void onBackPressed() {
+        new SweetAlertDialog(GameActivity.this, SweetAlertDialog.NORMAL_TYPE)
+                .setTitleText("Apakah kamu yakin?")
+                .setContentText("Kamu akan keluar dari game?")
+                .setConfirmText("Ya")
+                .setConfirmButtonBackgroundColor(R.color.red_btn_bg_color)
+                .setCancelButtonBackgroundColor(R.color.main_blue_color)
+                .setConfirmClickListener(sDialog -> {
+                    sDialog.dismissWithAnimation();
+                    GameActivity.super.onBackPressed();
+                })
+                .setCancelButton("Batal", SweetAlertDialog::dismissWithAnimation)
+                .show();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            hideSystemUI();
+        }
     }
 
     private void hideSystemUI() {
