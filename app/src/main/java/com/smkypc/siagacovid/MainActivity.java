@@ -1,25 +1,23 @@
 package com.smkypc.siagacovid;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.format.Formatter;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 import android.webkit.PermissionRequest;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.io.IOException;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MainActivity extends AppCompatActivity {
     WebView myWebView;
@@ -98,21 +96,36 @@ public class MainActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    @Override
+    public void onBackPressed() {
+        new SweetAlertDialog(MainActivity.this, SweetAlertDialog.NORMAL_TYPE)
+            .setTitleText("Apakah kamu yakin?")
+            .setContentText("Kamu akan keluar aplikasi?")
+            .setConfirmText("Ya")
+            .setConfirmButtonBackgroundColor(R.color.red_btn_bg_color)
+            .setCancelButtonBackgroundColor(R.color.main_blue_color)
+            .setConfirmClickListener(sDialog -> {
+                sDialog.dismissWithAnimation();
+                finish();
+            })
+            .setCancelButton("Batal", sDialog -> {
+                sDialog.dismissWithAnimation();
+            })
+            .show();
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void initFab(){
         fab = findViewById(R.id.fab);
         final Boolean[] muted = {false};
-        fab.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("UseCompatLoadingForDrawables")
-            @Override
-            public void onClick(View view) {
-                muted[0] = !muted[0];
-                if(muted[0]){
-                    fab.setImageDrawable(getResources().getDrawable(R.drawable.volume_mute));
-                    mediaPlayer.setVolume(0,0);
-                }else{
-                    fab.setImageDrawable(getResources().getDrawable(R.drawable.volume_high));
-                    mediaPlayer.setVolume(0,(float) .1);
-                }
+        fab.setOnClickListener(view -> {
+            muted[0] = !muted[0];
+            if(muted[0]){
+                fab.setImageDrawable(getResources().getDrawable(R.drawable.volume_mute));
+                mediaPlayer.setVolume(0,0);
+            }else{
+                fab.setImageDrawable(getResources().getDrawable(R.drawable.volume_high));
+                mediaPlayer.setVolume(0,(float) .1);
             }
         });
     }

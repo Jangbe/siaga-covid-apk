@@ -91,6 +91,10 @@ public class WebAppInterface {
     @SuppressLint("ShortAlarm")
     @JavascriptInterface
     public void camera(){
+//        Intent intent = new Intent(mContext, MainActivity2.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        mContext.startActivity(intent);
+
         Calendar cal = Calendar.getInstance();
 
         cal.setTimeInMillis(System.currentTimeMillis());
@@ -102,6 +106,12 @@ public class WebAppInterface {
 
         AlarmManager alarm = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
         alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis()+2000, 10000, pintent);
+    }
+
+    @JavascriptInterface
+    public void game(){
+        Intent intent = new Intent(mContext.getApplicationContext(), GameActivity.class);
+        mContext.startActivity(intent);
     }
 
     @JavascriptInterface

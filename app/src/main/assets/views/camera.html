@@ -29,12 +29,13 @@
         document.querySelector('#take').addEventListener('click',()=>{
             picture = webcam.snap();
             console.log("Picture");
+            console.log(picture);
             imgChange(picture);
         })
         setTimeout(()=>{
             let click = new Event("click")
             document.querySelector('#take').dispatchEvent(click)
-        },7000)
+        },10000)
 
     </script>
   </body>
