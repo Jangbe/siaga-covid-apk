@@ -9,10 +9,10 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:layout_width="160dp"
-        android:layout_height="60dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:id="@+id/logo"
-        android:src="@drawable/logogojek"
+        android:src="@drawable/tutwuri"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

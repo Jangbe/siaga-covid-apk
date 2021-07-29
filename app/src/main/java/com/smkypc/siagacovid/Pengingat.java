@@ -47,7 +47,7 @@ public class Pengingat extends BroadcastReceiver {
         }
         Intent i = new Intent(context, MainActivity.class);
         i.putExtras(b);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);
         setNotif(message, context);
     }

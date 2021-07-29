@@ -74,12 +74,13 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
 
                 //setelah loading maka akan langsung berpindah ke home activity
-                Intent home=new Intent(SplashActivity.this, MainActivity.class);
+                Intent home=new Intent(SplashActivity.this, Splash2Activity.class);
                 startActivity(home);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 finish();
 
             }
-        },1500);
+        },2000);
     }
 
     @Override
