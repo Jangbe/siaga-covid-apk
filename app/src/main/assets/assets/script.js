@@ -8,6 +8,8 @@ $('.title').children().animate({
 	'text-indent': 0
 }, 1000)
 
+
+
 setInterval(()=>{
 	$('.menu').animate({
 		marginLeft: -10,
@@ -20,11 +22,13 @@ $(window).on('resize', ()=>{
     checkScrollable()
 })
 function checkScrollable(){
-    if ($("body").height() > $(window).height()) {
-      $('html').css({height: 'max-content'})
-    }else{
-      $('html').css({height: '100%'})
-    }
+	$(document).ready(()=>{
+		if ($("body").height() > $(window).height()) {
+		  $('html').css({height: 'max-content'})
+		}else{
+		  $('html').css({height: '100%'})
+		}
+	})
 }
 checkScrollable()
 
@@ -33,3 +37,10 @@ $('a, button').click((e)=>{
 		App.click()
 	}
 })
+
+$('.subtitle').css({
+	transform: 'scale(1)'
+})
+$('.deskripsi').animate({
+	opacity: 1
+},1000)

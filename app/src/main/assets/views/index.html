@@ -45,36 +45,16 @@
           Pengingat
           <img src="../assets/img/clock.png" alt="" width="75" height="75" style="margin-top: -15px;">
         </a>
-        <button class="btn pink lighten-1 menu-item" onclick="App.game()">
-          Game
-          <img src="../assets/img/control.png" alt="" width="80" height="70" style="margin-top: -15px;">
-        </button>
       </div>
     </div>
-    <video id="webcam" autoplay playsinline ></video>
 
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-<<<<<<< HEAD
-    <script type="text/javascript">
-        const webcamElement = document.getElementById('webcam');
-        const canvasElement = document.getElementById('canvas');
-        const snapSoundElement = document.getElementById('snapSound');
-        const webcam = new Webcam(webcamElement, 'user', canvasElement, snapSoundElement);
-
-        webcam.start();
-        let take = document.querySelector("#take");
-        take.addEventListener("click",()=>{
-            App.camera();
-        })
-    </script>
-=======
->>>>>>> 8b93acfbd27a34d4859aa3ce767aafc572e310e7
     <script type="text/javascript" src = "../assets/script.js"></script>
     <script src="../assets/popper.min.js"></script>
     <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script>
       function firstOpen(){
-        let detikan = [3000, 3500, 4200, 2900, 3000,2500]
+        let detikan = [3000, 3500, 4200, 2900, 3000]
         let index = 0;
         let interval;
         let waktu = 0;
@@ -88,7 +68,7 @@
               waktu=0
             }
             $($('.menu-item')[index-1]).removeClass('hoverable').addClass('pink');
-            if(index>=5){
+            if(index>=4){
               clearInterval(interval)
               setTimeout(()=>{
                 $($('.menu-item')[index]).removeClass('hoverable').addClass('pink');
@@ -100,7 +80,6 @@
         },8000)
         $('#welcome')[0].play()
       }
-      firstOpen()
       if(!sessionStorage.getItem('firstEnter')){
         sessionStorage.setItem('firstEnter', true)
         firstOpen()

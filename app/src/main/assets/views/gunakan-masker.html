@@ -10,14 +10,16 @@
             background-image: url('../assets/img/foter1.png');
         }
         .subtitle{
-            width: 100%;
-            padding: 5px 20px;
-            color: white;
-            font-family: Galano;
-            border-radius: 10px;
-        }.subtitle span{
-            margin: 0;
-            font-size: 20px;
+          width: 100%;
+          padding: 5px 20px;
+          color: white;
+          font-family: Galano;
+          border-radius: 10px;
+          opacity: 1;
+          margin-left: -560px;
+        }
+        .subtitle:nth-of-type(even){
+          margin-left: 560px;
         }
         .content{
           color: #f06292;
@@ -33,6 +35,9 @@
         .content ol{
           padding-left: 10px;
         }
+        p, li{
+          opacity: 0;
+        }
     </style>
 </head>
   <body>
@@ -46,7 +51,7 @@
         </p>
         <p>
         <b>Masker juga harus dipakai baik di luar ruangan maupun di dalam ruangan yang berventilasi baik tetapi tak memungkinkan untuk menerapkan jaga jarak minimal satu meter.</b> Untuk wilayah penyebaran Covid-19, penggunaan masker medis universal juga disarankan di fasilitas perawatan kesehatan, termasuk saat merawat pasien lain.
-        <a href="https://indonesiabaik.id/infografis/gunakan-masker-saat-berada-dimana-saja">(https://indonesiabaik.id/infografis/gunakan-masker-saat-berada-dimana-saja)</a>
+        <!-- <a href="https://indonesiabaik.id/infografis/gunakan-masker-saat-berada-dimana-saja">(https://indonesiabaik.id/infografis/gunakan-masker-saat-berada-dimana-saja)</a> -->
         </p>
       </div>
       <div class="subtitle pink darken-2">
@@ -74,7 +79,7 @@
           <li>Ganti masker jika sudah lembap atau basah dengan masker yang baru.</li>
           <li>Buka masker tanpa menyentuh bagian depan masker, yaitu dengan melepaskannya dari bagian tali pengaitnya. Cuci tangan setelahnya.</li>
         </ol>
-        <a href="https://www.alodokter.com/agar-terhindar-dari-penularan-penyakit-gunakan-masker-dengan-tepat">(https://www.alodokter.com/agar-terhindar-dari-penularan-penyakit-gunakan-masker-dengan-tepat)</a>
+        <!-- <a href="https://www.alodokter.com/agar-terhindar-dari-penularan-penyakit-gunakan-masker-dengan-tepat">(https://www.alodokter.com/agar-terhindar-dari-penularan-penyakit-gunakan-masker-dengan-tepat)</a> -->
       </div>
     </div>
 
@@ -82,5 +87,15 @@
     <script type="text/javascript" src = "../assets/script.js"></script>
     <script src="../assets/popper.min.js"></script>
     <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script>
+      $('.subtitle').animate({
+          marginLeft: 0,
+      },1000)
+      setTimeout(() => {
+          $('p, li').animate({
+              opacity: 1
+          },1000)
+      }, 1000);
+    </script>
   </body>
 </html>

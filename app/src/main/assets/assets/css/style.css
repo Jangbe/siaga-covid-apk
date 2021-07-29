@@ -82,3 +82,10 @@ body{
     color: #800505;
     border: 1px solid #800505;
 }
+.subtitle{
+    transform: scale(2);
+    transition: all .5s;
+}
+.deskripsi{
+    opacity: 0;
+}

@@ -30,13 +30,6 @@
             color: #cc235c;
             font-weight: bold;
         }
-        /* .content p{
-            position: absolute;
-            top: -50;
-            right: auto;
-            font-size: 15px;
-            padding-left: 170px;
-        } */
         body{
             height: max-content;
             background-image: url('../assets/img/foter1.png');
@@ -49,6 +42,24 @@
             padding-left: 170px;
             margin-bottom: 25px;
         }
+        table tr, td{
+            border: 0;
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            transition: all 1s;
+        }
+        .even{
+            margin: -20px 10px;
+            margin-left: 85px;
+        }
+        td span{
+            /* margin-left: -1000px; */
+        }
     </style>
 </head>
   <body>
@@ -58,24 +69,58 @@
             <h4>Tangan</h4>
         </div>
         
-        <div class="gambar">
-            <img src="../assets/img/cuci-tangan2.png" alt="" srcset="">
-        </div>
-        <div class="content">
-            <ul>
-                <li>Basahi tangan dengan air dan sabun,gosok kedua telapak tangan</li>
-                <li>Gosok area punggung tangan</li>
-                <li>Gosok area selajari tangan</li>
-                <li>Gerakkan mengunci tangan</li>  
-                <li>Gosok area jari memutar</li>
-                <li>Gosok memutar ujung-ujung jari tangan</li>
-            </ul> 
-        </div>
+        <table class="content">
+            <tr>
+                <td style="width: 200px;"><img class="odd" src="../assets/img/ct1.png" alt=""></td>
+                <td><span>Basahi tangan dengan air dan sabun,gosok kedua telapak tangan</span></td>
+            </tr>
+            <tr>
+                <td><img class="even" src="../assets/img/ct2.png" alt=""></td>
+                <td><span>Gosok area punggung tangan</span></td>
+            </tr>
+            <tr>
+                <td><img class="odd" src="../assets/img/ct3.png" alt=""></td>
+                <td><span>Gosok area selajari tangan</span></td>
+            </tr>
+            <tr>
+                <td><img class="even" src="../assets/img/ct4.png" style="width: 130px; height: 130px;margin: -50px 0;margin-left: 100px" alt=""></td>
+                <td><span>Gerakkan mengunci tangan</span></td>
+            </tr>
+            <tr>
+                <td><img class="odd" src="../assets/img/ct5.png" alt=""></td>
+                <td><span>Gosok area jari memutar</span></td>
+            </tr>
+            <tr>
+                <td><img class="even" src="../assets/img/ct6.png" alt=""></td>
+                <td><span>Gosok memutar ujung-ujung jari tangan</span></td>
+            </tr>
+        </table>
     </div>
 
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src = "../assets/script.js"></script>
     <script src="../assets/popper.min.js"></script>
     <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script>
+        let bagean = true
+        setInterval(()=>{
+            if(bagean){
+                $('img').css({transform: 'rotate(10deg)'})
+            }else{
+                $('img').css({transform: 'rotate(-10deg)'})
+            }
+            bagean=!bagean
+        },2000)
+        $('span').each((index, node)=>{
+            let text = node.innerHTML;
+            node.innerHTML = ''
+            let intext = 0;
+            let ketikan = setInterval(()=>{
+                if(intext>=text.length-1) clearInterval(ketikan)
+                node.innerHTML += text[intext]
+                intext++
+            },30)
+        })
+    </script>
   </body>
 </html>

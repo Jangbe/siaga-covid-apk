@@ -7,16 +7,6 @@
     <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
-        /* .subtitle{
-            width: 100%;
-            padding: 5px 20px;
-            color: white;
-            font-family: Galano;
-            border-radius: 10px;
-        }.subtitle span{
-            margin: 0;
-            font-size: 20px;
-        } */
         .deskripsi{
             position: absolute;
             top: 235px;
@@ -79,5 +69,17 @@
     <script type="text/javascript" src = "../assets/script.js"></script>
     <script src="../assets/popper.min.js"></script>
     <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script>
+      $('p').each((index, node)=>{
+        let text = node.innerHTML;
+        node.innerHTML = ''
+        let intext = 0;
+        let ketikan = setInterval(()=>{
+            if(intext>=text.length-1) clearInterval(ketikan)
+            node.innerHTML += text[intext]
+            intext++
+        },30)
+      })
+    </script>
   </body>
 </html>
