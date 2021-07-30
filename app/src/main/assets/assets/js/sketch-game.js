@@ -1,6 +1,6 @@
 let classifier;
 // Model URL
-let ip = "http://127.0.0.1:5500";
+let ip = "http://0.0.0.0:8765";
 let imageModelURL = ip+'/game/model/model.json';
 
 let img;
@@ -44,11 +44,14 @@ function gotResult(error, results) {
   label = results[0].label;
   console.log("txt: "+label);
   textResult = label
-  if(label!="Correct: Mask On"){
-    $('.alert').css({bottom: 5+'%'});
-    setTimeout(()=>{
-        $('.alert').css({bottom: -1000});
-    },4000)
+  if(c2_callFunction){
+    let resultCall = c2_callFunction("kurangiDarah")
+    if(label!="Correct: Mask On"&&resultCall==1){
+      $('.alert').css({bottom: 5+'%'});
+      setTimeout(()=>{
+          $('.alert').css({bottom: -1000});
+      },4000)
+    }
   }
   loadImage(img, imageReady);
 }
