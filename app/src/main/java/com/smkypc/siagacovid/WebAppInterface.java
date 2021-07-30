@@ -81,4 +81,11 @@ public class WebAppInterface {
         clicked.start();
     }
 
+    @JavascriptInterface
+    public void game(){
+        Intent game = new Intent(mContext, GameActivity.class);
+        game.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        mContext.startActivity(game);
+    }
+
 }
