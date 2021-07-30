@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.webkit.PermissionRequest;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -22,7 +23,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class MainActivity extends AppCompatActivity {
     WebView myWebView;
     MediaPlayer mediaPlayer;
-    FloatingActionButton fab;
+    FloatingActionButton fab, info;
     private final String TAG = "TAG";
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -66,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setAllowFileAccess(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
-        myWebView.addJavascriptInterface(new WebAppInterface(this), "App");
 
         Intent current = getIntent();
         if(current!=null && current.getStringExtra("index")!=null){
@@ -76,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
             myWebView.loadUrl("file:///android_asset/views/index.html");
         }
 
+        myWebView.addJavascriptInterface(new WebAppInterface(this), "App");
+
         initBacksound();
         initFab();
     }
@@ -84,12 +86,13 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create(this, R.raw.backsound);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
-        mediaPlayer.setVolume(0, (float) .1);
+        mediaPlayer.setVolume(0, (float) .05);
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK) && myWebView.canGoBack()) {
+            info.setVisibility(View.VISIBLE);
             myWebView.goBack();
             return true;
         }
@@ -127,6 +130,12 @@ public class MainActivity extends AppCompatActivity {
                 fab.setImageDrawable(getResources().getDrawable(R.drawable.volume_high));
                 mediaPlayer.setVolume(0,(float) .1);
             }
+        });
+
+        info = findViewById(R.id.fab_info);
+        info.setOnClickListener(v -> {
+            info.setVisibility(View.INVISIBLE);
+            myWebView.loadUrl("file:///android_asset/views/info.html");
         });
     }
 }

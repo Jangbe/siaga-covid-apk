@@ -25,4 +25,18 @@
         app:tint="@color/white"
         tools:ignore="MissingConstraints" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_info"
+        android:layout_width="122dp"
+        android:layout_height="152dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="26dp"
+        android:layout_marginBottom="26dp"
+        android:contentDescription="@string/submit"
+        android:src="@drawable/ic_info"
+        android:tint="@color/white"
+        app:tint="@color/white"
+        tools:ignore="MissingConstraints" />
+
 </RelativeLayout>

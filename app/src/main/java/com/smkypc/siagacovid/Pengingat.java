@@ -23,6 +23,7 @@ public class Pengingat extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         player = MediaPlayer.create(context, R.raw.alarm);
+        player.setVolume(0, (float) .5);
         player.start();
 
         Bundle b = new Bundle();
@@ -54,7 +55,7 @@ public class Pengingat extends BroadcastReceiver {
 
     private void setNotif(String message, Context context){
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, channelId)
-                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setSmallIcon(R.drawable.logo)
                 .setContentTitle("Pengingat")
                 .setContentText(message);
         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

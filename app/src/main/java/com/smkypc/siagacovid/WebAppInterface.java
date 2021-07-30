@@ -73,13 +73,6 @@ public class WebAppInterface {
 
         AlarmManager alarm = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
         alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pintent);
-
-        ComponentName receiver = new ComponentName(mContext.getApplicationContext(), Pengingat.class);
-        PackageManager pm = mContext.getPackageManager();
-
-        pm.setComponentEnabledSetting(receiver,
-                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                PackageManager.DONT_KILL_APP);
     }
 
     @JavascriptInterface
@@ -88,19 +81,4 @@ public class WebAppInterface {
         clicked.start();
     }
 
-    @SuppressLint("ShortAlarm")
-    @JavascriptInterface
-    public void camera(){
-        Calendar cal = Calendar.getInstance();
-
-        cal.setTimeInMillis(System.currentTimeMillis());
-        cal.set(Calendar.SECOND, 0);
-
-        Intent intent = new Intent(mContext.getApplicationContext(), TakeCamera.class);
-        intent.setAction("takeCamera");
-        PendingIntent pintent = PendingIntent.getBroadcast(mContext.getApplicationContext(), 1000, intent, 0);
-
-        AlarmManager alarm = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis()+2000, 10000, pintent);
-    }
 }

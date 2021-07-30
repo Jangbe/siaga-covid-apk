@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Webview Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/material-icon.css">
+    <style>
+    .fixed-action-btn{
+      position: fixed;
+      left: 23px !important;
+      right: unset !important;
+    }
+    .menu-item img{
+      z-index: -9999;
+    }
+    .title{
+      font-family: galano;
+      background: #792451;
+      padding: 10px 20px;
+      border-radius: 7px;
+      color: #fff;
+      text-align: center;
+    }
+    .center{
+      size: 5px;;
+    }
+    .center h5{
+      font-family: galano;
+      color: #9c105b;
+    }
+    .center p{
+      margin-top: 2px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      color: #cf217e;
+      size: 5%;
+    }
+  </style>
+</head>
+<body>
+<div class="container" style="height: 100%;">
+    <h4 class="title">Siaga Covid</h4>
+    <audio src="../assets/audio/welcome.mp3" id="welcome"></audio>
+    <div class="center">
+        <h5>Aplikasi Dibuat Oleh</h5>
+        <p>Devi Mulyana</p>
+        <h5>Pembimbing</h5>
+        <p>Imam Amirullah</p>
+        <h5>Daftar Pusaka</h5>
+        <p>Buku Panduan Isolasi Mandiri PAPDI (Perhimpunan Dokter Spesialis Penyakit Dalam Indonesia.</p>
+        <h5>Sumber Gambar</h5>
+        <p>Gambar Sendiri</p>
+        <p>https://png2.cleanpng.com/dy/0f289cbc5b180d7120f7de0398fce57d/L0KzQYm4UcExN6htepH0aYP2gLBuTfR4bZ1xReZybXWwc732gBsufpp4jdN1LYPydsXAggJmNaRAiAZubYOwfMXrTfhwfaMyTdRuN0O1RojoUPRjP2YzSKQ7NEe4Roq4VcQyQGg9S6kANkW7SXB3jvc=/kisspng-dwell-time-clock-visual-software-systems-ltd-hour-5be73267a0db75.0224756915418783756589.png</p>
+        <h5>Musik</h5>
+        <p>https://www.youtube.com/watch?v=i56P3Z7EJqA</p>
+        <h5>Efek Suara</h5>
+        <p>https://mixkit.co/free-sound-effects/click/</p>
+      </div>
+</div>
+
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src = "../assets/script.js"></script>
+<script src="../assets/popper.min.js"></script>
+<script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+<script>
+    function firstOpen(){
+      let detikan = [3000, 3500, 4200, 2900, 3000]
+      let index = 0;
+      let interval;
+      let waktu = 0;
+      setTimeout(()=>{
+        $($('.menu-item')[0]).removeClass('pink').addClass('hoverable');
+        interval = setInterval(()=>{
+          waktu+=100;
+          if(waktu==detikan[index]){
+            $($('.menu-item')[index+1]).removeClass('pink').addClass('hoverable');
+            index++
+            waktu=0
+          }
+          $($('.menu-item')[index-1]).removeClass('hoverable').addClass('pink');
+          if(index>=4){
+            clearInterval(interval)
+            setTimeout(()=>{
+              $($('.menu-item')[index]).removeClass('hoverable').addClass('pink');
+              index=0
+              waktu=0
+            }, 2000)
+          }
+        },100)
+      },8000)
+      $('#welcome')[0].play()
+    }
+    if(!sessionStorage.getItem('firstEnter')){
+      sessionStorage.setItem('firstEnter', true)
+      firstOpen()
+    }
+
+    $('.menu-item').toggleClass('animate')
+  </script>
+</body>
+</html>

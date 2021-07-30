@@ -47,8 +47,7 @@ $('.deskripsi').animate({
 
 
 function makeDiv(){
-    var divsize = ((Math.random()*10) + 40).toFixed();
-    // var color = '#'+ Math.round(0xffffff * Math.random()).toString(16);
+    var divsize = ((Math.random()*10) + 30).toFixed();
     $newdiv = $('<img src="../assets/icon/coronavirus.png"/>').css({
         'width':divsize+'px',
         'height':divsize+'px',
@@ -68,7 +67,7 @@ function makeDiv(){
     }); 
 }
 setInterval(()=>{
-	for(let i = 0; i<=3;i++){
+	for(let i = 0; i<=4;i++){
 		makeDiv();
 	}
 },1000)

@@ -36,30 +36,30 @@ public class SplashActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, 50);
-        }else{
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, 50);
+//        }else{
             startActivity();
-        }
+//        }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case 50: {
-
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(SplashActivity.this, "Permission allow to open your Camera", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(SplashActivity.this, "Permission denied to open your Camera", Toast.LENGTH_SHORT).show();
-                }
-                startActivity();
-                return;
-            }
-        }
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        switch (requestCode) {
+//            case 50: {
+//
+//                // If request is cancelled, the result arrays are empty.
+//                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    Toast.makeText(SplashActivity.this, "Permission allow to open your Camera", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(SplashActivity.this, "Permission denied to open your Camera", Toast.LENGTH_SHORT).show();
+//                }
+//                startActivity();
+//                return;
+//            }
+//        }
+//    }
 
     private void initIPAddress() {
         WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
