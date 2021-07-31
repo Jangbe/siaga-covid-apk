@@ -46,17 +46,18 @@
 		.alert{
 			background-color: rgb(255, 177, 31);
 			position: fixed;
-			width: 650px;
+			width: 700px;
 			height: 30px;
 			bottom: 5%;
 			left: 50%;
-			margin-top: -100px; /* Negative half of height. */
-			margin-left: -250px;
+			margin-left: -360px;
 			text-align: center;
 			font-size: 20px;
+			font-family: sans-serif;
 			border-radius: 20px;
 			padding: 10px;
 			padding-top: 20px;
+			display: none;
 		}
     </style>
 	<script src="../assets/js/p5.min.js"></script>
@@ -68,39 +69,34 @@
 </head>
 
 <body>
-<div id="fb-root"></div>
+	<div id="fb-root"></div>
 
-<!-- The canvas must be inside a div called c2canvasdiv -->
-<div id="c2canvasdiv">
-	<canvas id="c2canvas" width="964" height="485">
-		<h1>Your browser does not appear to support HTML5.  Try upgrading your browser to the latest version.  </h1>
-	</canvas>
+	<!-- The canvas must be inside a div called c2canvasdiv -->
+	<div id="c2canvasdiv">
+		<canvas id="c2canvas" width="964" height="485">
+			<h1>Your browser does not appear to support HTML5.  Try upgrading your browser to the latest version.  </h1>
+		</canvas>
 
-</div>
+	</div>
 
-<video id="webcam" autoplay playsinline style="visibility: hidden"></video>
-<canvas id="canvas" class="d-none" style="display: none;"></canvas>
+	<video id="webcam" autoplay playsinline style="visibility: hidden"></video>
+	<canvas id="canvas" class="d-none" style="display: none;"></canvas>
 
-<div class="alert">Imun anda berkurang 10, silahkan pake masker agar imun mu tidak berkurang!</div>
+	<div class="alert">Imun anda berkurang 10, silahkan pake masker agar imun mu tidak berkurang!</div>
 
-<!-- Pages load faster with scripts at the bottom -->
+	<!-- Pages load faster with scripts at the bottom -->
 
-<!-- Construct 2 exported games require jQuery. -->
-<script src="jquery-3.4.1.min.js"></script>
+	<!-- Construct 2 exported games require jQuery. -->
+	<script src="jquery-3.4.1.min.js"></script>
 
-<script src="pathfind.js"></script>
+	<script src="pathfind.js"></script>
 
 
-<!-- The runtime script.  You can rename it, but don't forget to rename the reference here as well.
-This file will have been minified and obfuscated if you enabled "Minify script" during export. -->
-<script src="c2runtime.js"></script>
+	<!-- The runtime script.  You can rename it, but don't forget to rename the reference here as well.
+	This file will have been minified and obfuscated if you enabled "Minify script" during export. -->
+	<script src="c2runtime.js"></script>
 
-<script>
-		setInterval(() => {
-			$('.alert').fadeIn();
-			$('.alert').fadeOut();
-		}, 1000);
-		$('.alert').css({bottom: -1000});
+	<script>
 		const webcamElement = document.getElementById('webcam');
         const canvasElement = document.getElementById('canvas');
         const snapSoundElement = document.getElementById('snapSound');

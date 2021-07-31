@@ -1,6 +1,7 @@
 let classifier;
 // Model URL
 let ip = "http://0.0.0.0:8765";
+// let ip = "http://127.0.0.1:5500"
 let imageModelURL = ip+'/game/model/model.json';
 
 let img;
@@ -47,10 +48,9 @@ function gotResult(error, results) {
   if(c2_callFunction){
     let resultCall = c2_callFunction("kurangiDarah")
     if(label!="Correct: Mask On"&&resultCall==1){
-      $('.alert').css({bottom: 5+'%'});
-      setTimeout(()=>{
-          $('.alert').css({bottom: -1000});
-      },4000)
+      for(let i=0; i<5;i++){
+        $('.alert').fadeOut(200).delay(300).fadeIn(200).delay(300).fadeOut(200);
+      }
     }
   }
   loadImage(img, imageReady);

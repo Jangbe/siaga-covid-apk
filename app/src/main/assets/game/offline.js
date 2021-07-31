@@ -1,5 +1,5 @@
 ﻿{
-	"version": 1627654471,
+	"version": 1627701278,
 	"fileList": [
 		"data.js",
 		"c2runtime.js",
@@ -49,12 +49,15 @@
 		"images/aimpad-sheet0.png",
 		"images/pistol-sheet0.png",
 		"images/kembalistart-sheet0.png",
+		"images/collision4-sheet0.png",
+		"images/collision5-sheet0.png",
 		"images/tiledbackground.png",
 		"images/info-sheet0.png",
 		"images/sprite9-sheet0.png",
 		"images/sprite11-sheet0.png",
 		"images/sprite13-sheet0.png",
 		"images/sprite15-sheet0.png",
+		"images/sprite16-sheet0.png",
 		"media/gameplay.ogg",
 		"media/gameover.ogg",
 		"media/winner.ogg",
