@@ -84,6 +84,15 @@
             array.push($("#makan_pagi").val())
             array.push($("#mulai_aktifitas").val())
             array.push($("#mulai_aktifitas_rumah").val())
+            let aktifitas_luar = $("#mulai_aktifitas").val();
+            let jam = parseInt(aktifitas_luar.split(':')[0])
+            let menit = parseInt(aktifitas_luar.split(':')[1])
+            for(let i =0; i<2;i++){
+                jam+=2
+                let datajam = ('0'+jam).substr(('0'+jam).length-2,('0'+jam).length);
+                array.push(datajam+':'+menit);
+            }
+            array.push("10:00")
             App.saveData(JSON.stringify(array))
             window.location.href = "index.html"
         }

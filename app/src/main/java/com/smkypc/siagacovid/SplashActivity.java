@@ -5,6 +5,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.wifi.WifiManager;
@@ -16,6 +19,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 public class SplashActivity extends AppCompatActivity {
     private static MyHTTPD server;

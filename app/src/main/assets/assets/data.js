@@ -14,12 +14,17 @@ var kegiatan = {
         "<b>Makan bergizi seimbang</b> 3 kali sehari secara terpisah dengan keluarga"
     ],
     "aktifitas-luar":[
-        "Jangan lupa membawa <b>masker</b> dan <b>Handsanitizer</b>",
-        "<b>Cuci tangan</b> sebelum beraktifitas diluar",
+        "Jangan lupa memakai <b>masker</b> dan membawa <b>Handsanitizer</b>",
+        "Jangan lupa <b>Cuci tangan</b>",
+        "<b>Jaga jarak</b> dan jangan berkerumun",
         "<b>Periksa suhu tubuh dan saturasi oksigen</b> setiap keluar rumah"
     ],
     "aktifitas-dalam":[
         "<b>Cuci tangan</b> setelah beraktifitas diluar rumah",
         "<b>Periksa suhu tubuh dan saturasi oksigen</b> setelah beraktifitas diluar rumah"
+    ],
+    "jam-10":[
+        "<b>Berjemur matahari</b> 10-15 menit antara jam 10.00-13.00",
+        "<b>Jangan lupa pakai masker</b> dan setelahnya <b>cuci tangan</b>"
     ]
 }

@@ -39,12 +39,15 @@ public class Pengingat extends BroadcastReceiver {
         }else if(Integer.compare(requestCode, 2)==0){
             message = "Waktunya sarapan pagi, jangan lupa cuci tangan sebelum makan!";
             b.putString("index","sarapan-pagi");
-        }else if(Integer.compare(requestCode, 3)==0){
+        }else if(Integer.compare(requestCode, 3)==0 || Integer.compare(requestCode, 5)==0||Integer.compare(requestCode, 6)==0){
             message = "Jangan lupa bawa masker dan hand sanitizer ketika keluar rumah";
             b.putString("index","aktifitas-luar");
-        }else {
+        }else if(Integer.compare(requestCode, 4)==0){
             message = "Jangan lupa cuci tangan setelah aktifitas diluar rumah";
             b.putString("index","aktifitas-dalam");
+        }else{
+            message = "Berjemur matahari 10-15 menit antara jam 10.00-13.00";
+            b.putString("index","jam-10");
         }
         Intent i = new Intent(context, MainActivity.class);
         i.putExtras(b);
